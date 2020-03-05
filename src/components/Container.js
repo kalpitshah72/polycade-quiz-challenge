@@ -7,14 +7,24 @@ function Container() {
     const [question, setQuestion] = useState(questionData[0]);
     const [questionsAnswered, setQuestionsAnswered] = useState({});
 
+    /**
+     * Go to next question
+     * @param {get question id} id 
+     */
     const nextQuestion = (id) => {
         setQuestion(questionData[id]);
     }
 
+    /**
+     * Get data to process for Progress bar
+     * @param {*} id get question id
+     * @param {*} isCorrect Check if selected answer is correct or not
+     */
     const handleAnswerClick = (id, isCorrect) => {
         setQuestionsAnswered({ ...questionsAnswered, [id]: isCorrect });
     }
 
+    // Get Result (Progress bar)
     const bar1 = Math.floor((Object.values(questionsAnswered).filter(isCorrect => isCorrect).length / questionData.length) * 100);
     const bar2 = Math.floor((Object.values(questionsAnswered).filter(isCorrect => isCorrect).length / Object.keys(questionsAnswered).length) * 100);
     const bar3 = Math.floor(((Object.values(questionsAnswered).filter(isCorrect => isCorrect).length + (questionData.length - Object.keys(questionsAnswered).length)) / questionData.length) * 100);

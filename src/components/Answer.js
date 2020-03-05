@@ -13,12 +13,19 @@ const Answer = ({ question, correctAnswer, answers, nextQuestion, questionLength
         setAnswers(answers);
     }, [answers, correctAnswer]);
 
+    /**
+     * perform Action when User selects correct/incorrect answer
+     * @param {*} answer user selected answer 
+     */
     const handleAnswer = (answer) => {
         setIsCorrect(answer === correctAnswer)
         setGivenAnswer(answer);
         handleAnswerClick(question.id, answer === correctAnswer);
     }
 
+    /**
+     * Go to next question
+     */
     const gotoNext = () => {
         if (givenAnswer) {
             nextQuestion(question.id)
