@@ -7,45 +7,20 @@ const DIFFICULTY = {
     HARD: 'hard'
 }
 
-const STARS = ({ difficulty, ...props }) => {
+const STARS = ({ difficulty }) => {
 
-    switch (difficulty) {
+    const starFilled = ((Object.values(DIFFICULTY).findIndex(res => res === difficulty)) + 1);
+    const starOutlined = ((Object.values(DIFFICULTY).length) - starFilled);
+    var result = [
+        ...Array(starFilled).fill(<StarFilled />),
+        ...Array(starOutlined).fill(<StarOutlined />)
+    ];
 
-        case DIFFICULTY.EASY:
-            return (
-                <>
-                    <StarFilled />
-                    <StarOutlined />
-                    <StarOutlined />
-                </>
-            );
-        case DIFFICULTY.MEDIUM:
-            return (
-                <>
-                    <StarFilled />
-                    <StarFilled />
-                    <StarOutlined />
-                </>
-            );
-
-        case DIFFICULTY.HARD:
-            return (
-                <>
-                    <StarFilled />
-                    <StarFilled />
-                    <StarFilled />
-                </>
-            );
-        default:
-            return (
-                <>
-                    <StarOutlined />
-                    <StarOutlined />
-                    <StarOutlined />
-                </>
-            );
-    }
-
+    return (
+        <>
+            {result.map(showDifficultyLevel => showDifficultyLevel)}
+        </>
+    )
 }
 
 export default STARS;
